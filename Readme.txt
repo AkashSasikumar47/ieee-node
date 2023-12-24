@@ -1,6 +1,6 @@
-# Research & Development IEEE SRM
+# IAS IEEE SRM
 
-## This is the sample website for R&D domain IEEE SRM
+## This is the sample website for IAS domain IEEE SRM
 
 In this project we are using HTML, CSS and JavaScript. We are also using a Bootstrap V5 template.
 
