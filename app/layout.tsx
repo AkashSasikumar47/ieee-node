@@ -5,8 +5,8 @@ import "./globals.css";
 const montserrat = Montserrat({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "AR-ONE",
-  description: "Explore the future of artificial intelligence with hands-on experience in Generative AI.",
+  title: "AR-ONE | Lead Management",
+  description: "Streamline your corporate catering workflow with AR-ONE, an all-in-one SaaS solution for managing leads, tracking performance, sending mass emails, and boosting conversions. Effortlessly import your data, access powerful analytics, and grow your business with ease.",
 };
 
 export default function RootLayout({
