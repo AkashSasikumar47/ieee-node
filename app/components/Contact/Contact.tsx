@@ -4,7 +4,7 @@ const Contact = () => {
     return (
         <div className="max-w-screen-lg mx-auto px-4 py-4 md:px-8 md:py-4">
             <div className="mx-auto max-w-screen-2xl px-4 md:px-8">
-                {/* text - start */}
+
                 <div className="mb-10 md:mb-16">
                     <h2 className="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">
                         Get in touch
@@ -15,7 +15,6 @@ const Contact = () => {
                         random or otherwise generated.
                     </p>
                 </div>
-                {/* text - end */}
 
                 <form className="mx-auto grid max-w-screen-md gap-4 sm:grid-cols-2">
                     <div>
