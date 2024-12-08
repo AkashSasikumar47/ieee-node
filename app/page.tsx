@@ -6,6 +6,7 @@ import Head from 'next/head';
 import Navbar from './components/Navbar/Navbar';
 import Hero from './components/Hero/Hero';
 import Features from './components/Features/Features';
+import Contact from './components/Contact/Contact';
 import Footer from './components/Footer/Footer';
 
 import '../app/globals.css';
