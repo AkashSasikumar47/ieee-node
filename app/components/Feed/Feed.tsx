@@ -32,19 +32,16 @@ const Feed: React.FC<FeedProps> = ({ filterType }) => {
         const parsed = Papa.parse(csv, { header: true });
         const data = parsed.data as FeedItem[];
 
-        // Filter out any empty rows
         let filtered = data.filter(
           (item) => item.Title && item.Description && item.Date && item.Type
         );
 
-        // Apply type filter if provided
         if (filterType) {
           filtered = filtered.filter(
             (item) => item.Type.toLowerCase() === filterType.toLowerCase()
           );
         }
 
-        // Sort newest → oldest
         const sorted = filtered.sort(
           (a, b) => new Date(b.Date).getTime() - new Date(a.Date).getTime()
         );

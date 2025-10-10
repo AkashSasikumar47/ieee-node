@@ -6,7 +6,7 @@ import Feed from "./components/Feed/Feed";
 
 export default function Page() {
   return (
-    <div>
+    <div className="bg-gray-100">
       <Header />
       <Navbar />
       <Feed />

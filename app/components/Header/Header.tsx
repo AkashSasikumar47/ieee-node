@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 const Header = () => {
   return (
@@ -8,7 +9,14 @@ const Header = () => {
       aria-label="Header"
     >
       <img src="/Logo/node-logo.svg" alt="Node Logo" className="w-18 h-18" />
-      <img src="/Logo/ieee-logo.svg" alt="IEEE Logo" className="w-12 h-12" />
+
+      <Link href="/login">
+        <img
+          src="/Logo/ieee-logo.svg"
+          alt="IEEE Logo"
+          className="w-12 h-12 cursor-pointer"
+        />
+      </Link>
     </header>
   );
 };
