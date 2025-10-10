@@ -14,7 +14,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="sticky top-0 z-50 max-w-screen-sm bg-white mx-auto px-6 pt-4 flex flex-col gap-4">
+    <nav className="sticky top-0 z-50 max-w-screen-sm bg-white mx-auto px-4 pt-4 flex flex-col gap-4">
       <div className="flex justify-between items-center">
         <Link href="/" className={getLinkClass("/")}>
           Feed

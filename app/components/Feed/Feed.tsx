@@ -62,14 +62,14 @@ const Feed: React.FC<FeedProps> = ({ filterType }) => {
 
   if (loading) {
     return (
-      <section className="max-w-screen-sm bg-white mx-auto px-6 py-6">
+      <section className="max-w-screen-sm bg-white mx-auto px-4 py-6">
         <p className="text-center text-neutral-400">Loading updates...</p>
       </section>
     );
   }
 
   return (
-    <section className="max-w-screen-sm bg-white mx-auto px-6 py-6 flex flex-col gap-6">
+    <section className="max-w-screen-sm bg-white mx-auto px-4 py-6 flex flex-col gap-6">
       {feed.length === 0 ? (
         <p className="text-center text-neutral-400">No updates found.</p>
       ) : (

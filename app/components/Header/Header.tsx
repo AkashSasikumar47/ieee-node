@@ -4,7 +4,7 @@ const Header = () => {
   return (
     <header
       id="header"
-      className="max-w-screen-sm bg-white mx-auto px-6 pt-4 flex justify-between items-center"
+      className="max-w-screen-sm bg-white mx-auto px-4 pt-4 flex justify-between items-center"
       aria-label="Header"
     >
       <img src="/Logo/node-logo.svg" alt="Node Logo" className="w-18 h-18" />
