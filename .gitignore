@@ -1,14 +1,211 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# Node.js
+/node_modules/
+/.pnp
+.pnp.js
 
+# Dependency directories
+/jspm_packages/
+/bower_components/
+
+# Distribution directories
+/dist/
+/out/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Compiled Python bytecode
+*.pyc
+
+# Python env
+env/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+
+# Visual Studio Code
+.vscode/
+
+# IntelliJ
+.idea/
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# JetBrains
+*.iml
+
+# Logs
+*.log
+
+# Package files
+*.jar
+*.war
+*.ear
+*.log
+
+# Maven
+target/
+
+# Gradle
+.gradle/
+build/
+
+# Compiled Java classes
+*.class
+
+# Compiled TypeScript
+*.js
+*.js.map
+
+# Temporary files
+*.swp
+*~
+
+# Configuration files
+*.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Local npm packages
+/node_modules/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+lib-cov
+
+# Coverage directory
+coverage
+
+# Grunt intermediate storage (https://gruntjs.com/creating-plugins#storing-task-files)
+.grunt
+
+# Node.js REPL history
+.node_repl_history
+
+# Appcelerator Titanium Mobile
+build/
+
+# Django
+*.log
+*.pot
+*.pyc
+db.sqlite3
+__pycache__/
+
+# Visual Studio
+*.suo
+*.ntvs_analysis.dat
+*.sln.docstates
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+Desktop.ini
+*.lnk
+
+# JetBrains Rider
+.idea/
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.suo
+*.suo.lock
+*.suo.bak
+*.suo.bak.lock
+
+# Mono Auto Generated Files
+mono_crash.*
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# VS Code directories
+.vscode/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+# JetBrains Rider
+.idea/
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.suo
+*.suo.lock
+*.suo.bak
+*.suo.bak.lock
+
+# Mono Auto Generated Files
+mono_crash.*
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+# JetBrains Rider
+.idea/
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.suo
+*.suo.lock
+*.suo.bak
+*.suo.bak.lock
+
+# Mono Auto Generated Files
+mono_crash.*
 # dependencies
 /node_modules
 /.pnp
-.pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/versions
+.pnp.js
 
 # testing
 /coverage
@@ -16,6 +213,7 @@
 # next.js
 /.next/
 /out/
+.next
 
 # production
 /build
@@ -28,14 +226,52 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-.pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
-.env*
+# local env files
+.env*.local
 
 # vercel
 .vercel
 
+# firebase
+/app/firebase_config.js
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Additional Common Entries
+# Yarn lock files
+yarn.lock
+
+# ESLint
+.eslintcache
+
+# Prettier
+.prettier*
+
+# Parcel
+.cache/
+.parcel-cache/
+
+# Docker
+Dockerfile
+.dockerignore
+docker-compose.yml
+docker-compose.override.yml
+
+# Terraform
+*.tfstate
+*.tfstate.backup
+.terraform/
+
+# Ansible
+*.retry
+
+# Caches for commonly used build tools
+.cache/
+
+temp/
+
+# Nuxt.js
+.nuxt/
