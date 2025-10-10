@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   title: "Node | IEEE SRMIST",
   description:
     "Stay updated with all IEEE events, workshops, and meetings in one sleek, minimal feed.",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
