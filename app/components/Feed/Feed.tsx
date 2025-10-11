@@ -33,17 +33,17 @@ const Feed: React.FC<FeedProps> = ({ filterType }) => {
         const data = parsed.data as FeedItem[];
 
         let filtered = data.filter(
-          (item) => item.Title && item.Description && item.Date && item.Type
+          (item) => item.Title && item.Description && item.Date && item.Type,
         );
 
         if (filterType) {
           filtered = filtered.filter(
-            (item) => item.Type.toLowerCase() === filterType.toLowerCase()
+            (item) => item.Type.toLowerCase() === filterType.toLowerCase(),
           );
         }
 
         const sorted = filtered.sort(
-          (a, b) => new Date(b.Date).getTime() - new Date(a.Date).getTime()
+          (a, b) => new Date(b.Date).getTime() - new Date(a.Date).getTime(),
         );
 
         setFeed(sorted);

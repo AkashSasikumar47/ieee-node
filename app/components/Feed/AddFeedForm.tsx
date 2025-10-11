@@ -57,7 +57,7 @@ const AddFeedForm = () => {
         setType("Event");
       } else {
         setMessage(
-          "Error adding feed item: " + (data.error || "Unknown error")
+          "Error adding feed item: " + (data.error || "Unknown error"),
         );
       }
     } catch {

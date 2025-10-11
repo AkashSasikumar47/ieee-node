@@ -8,7 +8,7 @@ export async function POST(req: NextRequest) {
     if (!sheetWebhook) {
       return NextResponse.json(
         { status: "error", error: "Sheet Webhook not configured" },
-        { status: 500 }
+        { status: 500 },
       );
     }
 
@@ -31,7 +31,7 @@ export async function POST(req: NextRequest) {
     console.error(err);
     return NextResponse.json(
       { status: "error", error: "Failed to post to Google Sheet" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
