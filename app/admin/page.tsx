@@ -23,7 +23,7 @@ export default function AdminPage() {
   };
 
   return (
-    <div className="bg-gray-100">
+    <div>
       <Header />
       <Navbar />
       <div className="max-w-screen-sm bg-white mx-auto px-4 py-6 flex flex-col gap-6">
