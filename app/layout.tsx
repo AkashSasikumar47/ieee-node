@@ -12,6 +12,7 @@ export const metadata: Metadata = {
     "Stay updated with all IEEE events, workshops, and meetings in one sleek, minimal feed.",
   icons: {
     icon: "/favicon.ico",
+    apple: "/favicon.ico",
   },
 };
 
@@ -23,7 +24,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/favicon.ico" />
         <meta name="theme-color" content="#ffffff" />
       </head>
 

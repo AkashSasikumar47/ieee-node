@@ -2,65 +2,51 @@
 
 import { useState } from "react";
 
-interface FeedItem {
-  Title: string;
-  Description: string;
-  Date: string;
-  Type: "Event" | "Meeting" | "Workshop";
-}
+type FeedType = "Event" | "Meeting" | "Workshop";
 
 const AddFeedForm = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
-  const [type, setType] = useState<FeedItem["Type"]>("Event");
+  const [type, setType] = useState<FeedType>("Event");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
+  const [isError, setIsError] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!title || !description || !date || !type) {
+      setIsError(true);
       setMessage("Please fill all fields");
-      return;
-    }
-
-    if (!date.match(/^\d{4}-\d{2}-\d{2}$/)) {
-      setMessage("Please select a valid date");
       return;
     }
 
     setLoading(true);
     setMessage(null);
 
-    const payload: FeedItem = {
-      Title: title,
-      Description: description,
-      Date: date,
-      Type: type,
-    };
-
     try {
       const res = await fetch("/api/addFeed", {
         method: "POST",
-        body: JSON.stringify(payload),
+        body: JSON.stringify({ title, description, date, type }),
         headers: { "Content-Type": "application/json" },
       });
 
       const data = await res.json();
 
       if (data.status === "success") {
+        setIsError(false);
         setMessage("Feed item added successfully!");
         setTitle("");
         setDescription("");
         setDate("");
         setType("Event");
       } else {
-        setMessage(
-          "Error adding feed item: " + (data.error || "Unknown error"),
-        );
+        setIsError(true);
+        setMessage("Error: " + (data.error || "Unknown error"));
       }
     } catch {
+      setIsError(true);
       setMessage("Error submitting feed item");
     } finally {
       setLoading(false);
@@ -74,7 +60,13 @@ const AddFeedForm = () => {
       className="bg-white rounded-lg border border-neutral-200 p-4 shadow-xs flex flex-col gap-4"
     >
       <h2 className="font-medium text-lg">Add New Feed Item</h2>
-      {message && <p className="font-medium text-xs text-red-500">{message}</p>}
+      {message && (
+        <p
+          className={`font-medium text-xs ${isError ? "text-red-500" : "text-green-600"}`}
+        >
+          {message}
+        </p>
+      )}
       <input
         type="text"
         placeholder="Title"
@@ -99,7 +91,7 @@ const AddFeedForm = () => {
       <select
         className="w-full rounded-lg border border-neutral-200 p-4 shadow-xs font-medium text-sm"
         value={type}
-        onChange={(e) => setType(e.target.value as FeedItem["Type"])}
+        onChange={(e) => setType(e.target.value as FeedType)}
       >
         <option value="Event">Event</option>
         <option value="Meeting">Meeting</option>
@@ -108,7 +100,7 @@ const AddFeedForm = () => {
       <button
         type="submit"
         disabled={loading}
-        className="w-full rounded-lg p-2 font-medium text-lg text-white bg-black hover:bg-blue-500"
+        className="w-full rounded-lg p-2 font-medium text-lg text-white bg-black hover:bg-blue-500 disabled:opacity-50"
       >
         {loading ? "Submitting..." : "Add Feed Item"}
       </button>

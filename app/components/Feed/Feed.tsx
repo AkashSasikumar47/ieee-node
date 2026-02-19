@@ -1,15 +1,8 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Papa from "papaparse";
+import { createSupabaseClient, FeedItem } from "@/lib/supabase";
 import Card from "../Card/Card";
-
-interface FeedItem {
-  Title: string;
-  Description: string;
-  Date: string;
-  Type: string;
-}
 
 interface FeedProps {
   filterType?: string;
@@ -22,33 +15,22 @@ const Feed: React.FC<FeedProps> = ({ filterType }) => {
   useEffect(() => {
     const fetchFeed = async () => {
       try {
-        const sheetUrl = process.env.NEXT_PUBLIC_SHEET_URL;
-        if (!sheetUrl) throw new Error("Sheet URL not found in environment");
-
-        const res = await fetch(sheetUrl);
-        if (!res.ok) throw new Error("Failed to fetch sheet");
-        const csv = await res.text();
-
-        const parsed = Papa.parse(csv, { header: true });
-        const data = parsed.data as FeedItem[];
-
-        let filtered = data.filter(
-          (item) => item.Title && item.Description && item.Date && item.Type,
-        );
+        const supabase = createSupabaseClient();
+        let query = supabase
+          .from("node_feed")
+          .select("*")
+          .order("date", { ascending: false });
 
         if (filterType) {
-          filtered = filtered.filter(
-            (item) => item.Type.toLowerCase() === filterType.toLowerCase(),
-          );
+          query = query.eq("type", filterType);
         }
 
-        const sorted = filtered.sort(
-          (a, b) => new Date(b.Date).getTime() - new Date(a.Date).getTime(),
-        );
+        const { data, error } = await query;
 
-        setFeed(sorted);
+        if (error) throw error;
+        setFeed(data ?? []);
       } catch (err) {
-        console.error("❌ Error fetching sheet data:", err);
+        console.error("Error fetching feed:", err);
       } finally {
         setLoading(false);
       }
@@ -70,13 +52,13 @@ const Feed: React.FC<FeedProps> = ({ filterType }) => {
       {feed.length === 0 ? (
         <p className="text-center text-neutral-400">No updates found.</p>
       ) : (
-        feed.map((item, index) => (
+        feed.map((item) => (
           <Card
-            key={index}
-            title={item.Title}
-            description={item.Description}
-            date={item.Date}
-            type={item.Type}
+            key={item.id}
+            title={item.title}
+            description={item.description}
+            date={item.date}
+            type={item.type}
           />
         ))
       )}
