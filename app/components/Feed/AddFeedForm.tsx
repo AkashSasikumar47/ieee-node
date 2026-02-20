@@ -1,8 +1,7 @@
 "use client";
 
 import { useState } from "react";
-
-type FeedType = "Event" | "Meeting" | "Workshop";
+import { FeedType } from "@/lib/supabase";
 
 const AddFeedForm = () => {
   const [title, setTitle] = useState("");

@@ -1,4 +1,4 @@
-import React from "react";
+import Image from "next/image";
 import Link from "next/link";
 
 const Header = () => {
@@ -8,13 +8,23 @@ const Header = () => {
       className="max-w-screen-sm bg-white mx-auto px-4 pt-4 flex justify-between items-center"
       aria-label="Header"
     >
-      <img src="/Logo/node-logo.svg" alt="Node Logo" className="w-18 h-18" />
+      <Image
+        src="/Logo/node-logo.svg"
+        alt="Node Logo"
+        width={72}
+        height={72}
+        className="w-18 h-18"
+        unoptimized
+      />
 
       <Link href="/login">
-        <img
+        <Image
           src="/Logo/ieee-logo.svg"
           alt="IEEE Logo"
+          width={48}
+          height={48}
           className="w-12 h-12 cursor-pointer"
+          unoptimized
         />
       </Link>
     </header>

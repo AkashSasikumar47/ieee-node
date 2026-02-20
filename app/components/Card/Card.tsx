@@ -1,13 +1,13 @@
-import React from "react";
+import { FeedType } from "@/lib/supabase";
 
 interface CardProps {
   title: string;
   description: string;
   date: string;
-  type: string;
+  type: FeedType;
 }
 
-const Card: React.FC<CardProps> = ({ title, description, date, type }) => {
+const Card = ({ title, description, date, type }: CardProps) => {
   return (
     <div className="block rounded-lg border border-neutral-200 p-4 shadow-xs bg-white">
       <div>

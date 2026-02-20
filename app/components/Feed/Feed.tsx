@@ -1,16 +1,17 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { createSupabaseClient, FeedItem } from "@/lib/supabase";
+import { useEffect, useState } from "react";
+import { createSupabaseClient, FeedItem, FeedType } from "@/lib/supabase";
 import Card from "../Card/Card";
 
 interface FeedProps {
-  filterType?: string;
+  filterType?: FeedType;
 }
 
-const Feed: React.FC<FeedProps> = ({ filterType }) => {
+const Feed = ({ filterType }: FeedProps) => {
   const [feed, setFeed] = useState<FeedItem[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchFeed = async () => {
@@ -31,6 +32,7 @@ const Feed: React.FC<FeedProps> = ({ filterType }) => {
         setFeed(data ?? []);
       } catch (err) {
         console.error("Error fetching feed:", err);
+        setError("Failed to load updates.");
       } finally {
         setLoading(false);
       }
@@ -43,6 +45,14 @@ const Feed: React.FC<FeedProps> = ({ filterType }) => {
     return (
       <section className="max-w-screen-sm bg-white mx-auto px-4 py-6">
         <p className="text-center text-neutral-400">Loading updates...</p>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section className="max-w-screen-sm bg-white mx-auto px-4 py-6">
+        <p className="text-center text-neutral-400">{error}</p>
       </section>
     );
   }
