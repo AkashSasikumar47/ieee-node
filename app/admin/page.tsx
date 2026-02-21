@@ -3,9 +3,9 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
-import Header from "../components/Header/Header";
-import Navbar from "../components/Navbar/Navbar";
-import AddFeedForm from "../components/Feed/AddFeedForm";
+import Header from "../components/Header";
+import Navbar from "../components/Navbar";
+import FeedForm from "../components/FeedForm";
 
 export default function AdminPage() {
   const router = useRouter();
@@ -27,7 +27,7 @@ export default function AdminPage() {
       <Header />
       <Navbar />
       <div className="mx-auto flex max-w-screen-sm flex-col gap-6 bg-white px-4 py-6">
-        <AddFeedForm />
+        <FeedForm />
         <div className="flex justify-start">
           <button
             onClick={handleLogout}

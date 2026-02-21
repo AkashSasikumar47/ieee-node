@@ -1,13 +1,13 @@
-import Header from "../components/Header/Header";
-import Navbar from "../components/Navbar/Navbar";
-import Feed from "../components/Feed/Feed";
+import Header from "../components/Header";
+import Navbar from "../components/Navbar";
+import FeedList from "../components/FeedList";
 
 export default function EventsPage() {
   return (
     <div>
       <Header />
       <Navbar />
-      <Feed filterType="Event" />
+      <FeedList filterType="Event" />
     </div>
   );
 }

@@ -2,7 +2,7 @@ const Footer = () => {
   return (
     <footer
       id="footer"
-      className="mx-auto flex max-w-screen-sm flex-col gap-8 bg-white px-8 py-4 text-center"
+      className="mx-auto flex max-w-screen-sm flex-col gap-8 bg-white px-4 py-4 text-center"
       aria-label="Site Footer"
     >
       <p className="text-xs font-normal text-neutral-400">

@@ -1,13 +1,13 @@
 import { FeedType } from "@/lib/supabase";
 
-interface CardProps {
+interface FeedCardProps {
   title: string;
   description: string;
   date: string;
   type: FeedType;
 }
 
-const Card = ({ title, description, date, type }: CardProps) => {
+const FeedCard = ({ title, description, date, type }: FeedCardProps) => {
   return (
     <div className="block rounded-lg border border-neutral-200 bg-white p-4 shadow-xs">
       <div>
@@ -24,4 +24,4 @@ const Card = ({ title, description, date, type }: CardProps) => {
   );
 };
 
-export default Card;
+export default FeedCard;

@@ -2,13 +2,13 @@
 
 import { useEffect, useState } from "react";
 import { createSupabaseClient, FeedItem, FeedType } from "@/lib/supabase";
-import Card from "../Card/Card";
+import FeedCard from "./FeedCard";
 
-interface FeedProps {
+interface FeedListProps {
   filterType?: FeedType;
 }
 
-const Feed = ({ filterType }: FeedProps) => {
+const FeedList = ({ filterType }: FeedListProps) => {
   const [feed, setFeed] = useState<FeedItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -63,7 +63,7 @@ const Feed = ({ filterType }: FeedProps) => {
         <p className="text-center text-neutral-400">No updates found.</p>
       ) : (
         feed.map((item) => (
-          <Card
+          <FeedCard
             key={item.id}
             title={item.title}
             description={item.description}
@@ -76,4 +76,4 @@ const Feed = ({ filterType }: FeedProps) => {
   );
 };
 
-export default Feed;
+export default FeedList;

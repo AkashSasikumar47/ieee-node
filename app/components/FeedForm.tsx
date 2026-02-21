@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { FeedType } from "@/lib/supabase";
 
-const AddFeedForm = () => {
+const FeedForm = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
@@ -25,7 +25,7 @@ const AddFeedForm = () => {
     setMessage(null);
 
     try {
-      const res = await fetch("/api/addFeed", {
+      const res = await fetch("/api/feed", {
         method: "POST",
         body: JSON.stringify({ title, description, date, type }),
         headers: { "Content-Type": "application/json" },
@@ -107,4 +107,4 @@ const AddFeedForm = () => {
   );
 };
 
-export default AddFeedForm;
+export default FeedForm;
