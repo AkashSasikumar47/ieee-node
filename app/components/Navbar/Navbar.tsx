@@ -13,8 +13,8 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="sticky top-0 z-50 max-w-screen-sm bg-white mx-auto px-4 pt-4 flex flex-col gap-4">
-      <div className="flex justify-between items-center">
+    <nav className="sticky top-0 z-50 mx-auto flex max-w-screen-sm flex-col gap-4 bg-white px-4 pt-4">
+      <div className="flex items-center justify-between">
         <Link href="/" className={getLinkClass("/")}>
           Feed
         </Link>
@@ -28,7 +28,7 @@ const Navbar = () => {
           Workshop
         </Link>
       </div>
-      <hr className="border-t border-neutral-200 w-full shadow-xs" />
+      <hr className="w-full border-t border-neutral-200 shadow-xs" />
     </nav>
   );
 };

@@ -45,31 +45,31 @@ export default function LoginPage() {
       <Header />
       <Navbar />
 
-      <div className="max-w-screen-sm bg-white mx-auto px-4 py-6">
+      <div className="mx-auto max-w-screen-sm bg-white px-4 py-6">
         <form
           onSubmit={handleLogin}
-          className="bg-white rounded-lg border border-neutral-200 p-4 shadow-xs flex flex-col gap-4"
+          className="flex flex-col gap-4 rounded-lg border border-neutral-200 bg-white p-4 shadow-xs"
         >
-          <h2 className="font-medium text-lg">Admin Login</h2>
-          {error && <p className="font-medium text-xs text-red-500">{error}</p>}
+          <h2 className="text-lg font-medium">Admin Login</h2>
+          {error && <p className="text-xs font-medium text-red-500">{error}</p>}
           <input
             type="text"
             placeholder="Username"
-            className="w-full rounded-lg border border-neutral-200 p-4 shadow-xs font-medium text-sm"
+            className="w-full rounded-lg border border-neutral-200 p-4 text-sm font-medium shadow-xs"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
           <input
             type="password"
             placeholder="Password"
-            className="w-full rounded-lg border border-neutral-200 p-4 shadow-xs font-medium text-sm"
+            className="w-full rounded-lg border border-neutral-200 p-4 text-sm font-medium shadow-xs"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
           <button
             type="submit"
             disabled={loading}
-            className="w-full rounded-lg p-2 font-medium text-lg text-white bg-black hover:bg-blue-500 disabled:opacity-50"
+            className="w-full rounded-lg bg-black p-2 text-lg font-medium text-white hover:bg-blue-500 disabled:opacity-50"
           >
             {loading ? "Logging in..." : "Login"}
           </button>

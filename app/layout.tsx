@@ -27,7 +27,7 @@ export default function RootLayout({
         <meta name="theme-color" content="#ffffff" />
       </head>
 
-      <body className={`${montserrat.className} flex flex-col min-h-screen`}>
+      <body className={`${montserrat.className} flex min-h-screen flex-col`}>
         <main className="flex-grow">{children}</main>
         <Footer />
       </body>

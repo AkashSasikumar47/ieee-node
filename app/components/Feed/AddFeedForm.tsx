@@ -56,12 +56,12 @@ const AddFeedForm = () => {
     <form
       onSubmit={handleSubmit}
       noValidate
-      className="bg-white rounded-lg border border-neutral-200 p-4 shadow-xs flex flex-col gap-4"
+      className="flex flex-col gap-4 rounded-lg border border-neutral-200 bg-white p-4 shadow-xs"
     >
-      <h2 className="font-medium text-lg">Add New Feed Item</h2>
+      <h2 className="text-lg font-medium">Add New Feed Item</h2>
       {message && (
         <p
-          className={`font-medium text-xs ${isError ? "text-red-500" : "text-green-600"}`}
+          className={`text-xs font-medium ${isError ? "text-red-500" : "text-green-600"}`}
         >
           {message}
         </p>
@@ -69,26 +69,26 @@ const AddFeedForm = () => {
       <input
         type="text"
         placeholder="Title"
-        className="w-full rounded-lg border border-neutral-200 p-4 shadow-xs font-medium text-sm"
+        className="w-full rounded-lg border border-neutral-200 p-4 text-sm font-medium shadow-xs"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
       <textarea
         placeholder="Description"
-        className="w-full rounded-lg border border-neutral-200 p-4 shadow-xs font-medium text-sm"
+        className="w-full rounded-lg border border-neutral-200 p-4 text-sm font-medium shadow-xs"
         rows={4}
         value={description}
         onChange={(e) => setDescription(e.target.value)}
       />
       <input
         type="date"
-        className="w-full rounded-lg border border-neutral-200 p-4 shadow-xs font-medium text-sm"
+        className="w-full rounded-lg border border-neutral-200 p-4 text-sm font-medium shadow-xs"
         value={date}
         onChange={(e) => setDate(e.target.value)}
         required
       />
       <select
-        className="w-full rounded-lg border border-neutral-200 p-4 shadow-xs font-medium text-sm"
+        className="w-full rounded-lg border border-neutral-200 p-4 text-sm font-medium shadow-xs"
         value={type}
         onChange={(e) => setType(e.target.value as FeedType)}
       >
@@ -99,7 +99,7 @@ const AddFeedForm = () => {
       <button
         type="submit"
         disabled={loading}
-        className="w-full rounded-lg p-2 font-medium text-lg text-white bg-black hover:bg-blue-500 disabled:opacity-50"
+        className="w-full rounded-lg bg-black p-2 text-lg font-medium text-white hover:bg-blue-500 disabled:opacity-50"
       >
         {loading ? "Submitting..." : "Add Feed Item"}
       </button>

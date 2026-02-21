@@ -5,7 +5,7 @@ const Header = () => {
   return (
     <header
       id="header"
-      className="max-w-screen-sm bg-white mx-auto px-4 pt-4 flex justify-between items-center"
+      className="mx-auto flex max-w-screen-sm items-center justify-between bg-white px-4 pt-4"
       aria-label="Header"
     >
       <Image
@@ -13,7 +13,7 @@ const Header = () => {
         alt="Node Logo"
         width={72}
         height={72}
-        className="w-18 h-18"
+        className="h-18 w-18"
         unoptimized
       />
 
@@ -23,7 +23,7 @@ const Header = () => {
           alt="IEEE Logo"
           width={48}
           height={48}
-          className="w-12 h-12 cursor-pointer"
+          className="h-12 w-12 cursor-pointer"
           unoptimized
         />
       </Link>
