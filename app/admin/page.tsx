@@ -26,16 +26,14 @@ export default function AdminPage() {
     <div>
       <Header />
       <Navbar />
-      <div className="mx-auto flex max-w-screen-sm flex-col gap-6 bg-white px-4 py-6">
+      <div className="mx-auto flex max-w-screen-sm flex-col gap-4 bg-white px-4 py-6">
         <FeedForm />
-        <div className="flex justify-start">
-          <button
-            onClick={handleLogout}
-            className="text-sm font-medium hover:text-red-500 hover:underline"
-          >
-            ← Logout
-          </button>
-        </div>
+        <button
+          onClick={handleLogout}
+          className="text-xs font-medium text-neutral-400 hover:text-red-500"
+        >
+          Logout
+        </button>
       </div>
     </div>
   );

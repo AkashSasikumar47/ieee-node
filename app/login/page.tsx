@@ -50,26 +50,26 @@ export default function LoginPage() {
           onSubmit={handleLogin}
           className="flex flex-col gap-4 rounded-lg border border-neutral-200 bg-white p-4 shadow-xs"
         >
-          <h2 className="text-lg font-medium">Admin Login</h2>
+          <h2 className="text-base font-semibold">Admin Login</h2>
           {error && <p className="text-xs font-medium text-red-500">{error}</p>}
           <input
             type="text"
             placeholder="Username"
-            className="w-full rounded-lg border border-neutral-200 p-4 text-sm font-medium shadow-xs"
+            className="w-full rounded-lg border border-neutral-200 p-4 text-sm font-normal shadow-xs"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
           <input
             type="password"
             placeholder="Password"
-            className="w-full rounded-lg border border-neutral-200 p-4 text-sm font-medium shadow-xs"
+            className="w-full rounded-lg border border-neutral-200 p-4 text-sm font-normal shadow-xs"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
           <button
             type="submit"
             disabled={loading}
-            className="w-full rounded-lg bg-black p-2 text-lg font-medium text-white hover:bg-blue-500 disabled:opacity-50"
+            className="w-full rounded-lg bg-black py-3 text-sm font-medium text-white hover:bg-blue-500 disabled:opacity-50"
           >
             {loading ? "Logging in..." : "Login"}
           </button>

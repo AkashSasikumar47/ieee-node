@@ -7,7 +7,7 @@ const Navbar = () => {
   const pathname = usePathname();
 
   const getLinkClass = (href: string) => {
-    return `font-medium text-base ${
+    return `text-sm font-medium ${
       pathname === href ? "text-blue-700" : "hover:text-neutral-400"
     }`;
   };

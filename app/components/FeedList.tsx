@@ -44,7 +44,7 @@ const FeedList = ({ filterType }: FeedListProps) => {
   if (loading) {
     return (
       <section className="mx-auto max-w-screen-sm bg-white px-4 py-6">
-        <p className="text-center text-neutral-400">Loading updates...</p>
+        <p className="text-center text-sm font-normal text-neutral-400">Loading updates...</p>
       </section>
     );
   }
@@ -52,7 +52,7 @@ const FeedList = ({ filterType }: FeedListProps) => {
   if (error) {
     return (
       <section className="mx-auto max-w-screen-sm bg-white px-4 py-6">
-        <p className="text-center text-neutral-400">{error}</p>
+        <p className="text-center text-sm font-normal text-neutral-400">{error}</p>
       </section>
     );
   }
@@ -60,7 +60,7 @@ const FeedList = ({ filterType }: FeedListProps) => {
   return (
     <section className="mx-auto flex max-w-screen-sm flex-col gap-6 bg-white px-4 py-6">
       {feed.length === 0 ? (
-        <p className="text-center text-neutral-400">No updates found.</p>
+        <p className="text-center text-sm font-normal text-neutral-400">No updates found.</p>
       ) : (
         feed.map((item) => (
           <FeedCard
