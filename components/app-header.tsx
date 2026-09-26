@@ -1,17 +1,27 @@
+import Image from "next/image";
 import Link from "next/link";
 
-export function AppHeader({ subtitle = "IEEE SRMIST" }: { subtitle?: string }) {
+export function AppHeader() {
   return (
-    <header className="sticky top-0 z-10 border-b bg-background/90 pt-[env(safe-area-inset-top)] backdrop-blur-sm">
-      <div className="mx-auto flex max-w-md items-center px-4 py-3">
-        <Link href="/" className="flex items-center gap-2">
-          <span className="flex size-8 items-center justify-center rounded-lg bg-primary text-sm font-bold text-primary-foreground">
-            N
-          </span>
-          <span className="flex flex-col leading-none">
-            <span className="text-sm font-semibold">NODE</span>
-            <span className="text-xs text-muted-foreground">{subtitle}</span>
-          </span>
+    <header className="sticky top-0 z-10 bg-background/90 pt-[env(safe-area-inset-top)] backdrop-blur-sm">
+      <div className="mx-auto flex max-w-md items-center justify-between px-4 py-3">
+        <Link href="/" aria-label="NODE feed">
+          <Image
+            src="/logos/node-logo.png"
+            alt="NODE"
+            width={80}
+            height={28}
+            priority
+          />
+        </Link>
+        <Link href="/admin" aria-label="Admin">
+          <Image
+            src="/logos/ieee-srmist-logo.png"
+            alt="IEEE SRMIST"
+            width={36}
+            height={36}
+            priority
+          />
         </Link>
       </div>
     </header>

@@ -15,9 +15,9 @@ export default async function AdminPage() {
   if (error) console.error("Failed to load posts for admin:", error.message);
 
   return (
-    <div className="min-h-dvh">
-      <AppHeader subtitle="Admin" />
-      <main className="mx-auto max-w-md px-4 pt-6 pb-[max(1.5rem,env(safe-area-inset-bottom))]">
+    <div className="flex-1">
+      <AppHeader />
+      <main className="mx-auto max-w-md px-4 pt-6 pb-6">
         <AdminConsole posts={data ?? []} />
       </main>
     </div>

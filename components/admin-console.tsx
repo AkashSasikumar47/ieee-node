@@ -14,15 +14,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@ieee/ui/components/alert-dialog";
-import { Badge } from "@ieee/ui/components/badge";
 import { Button } from "@ieee/ui/components/button";
-import {
-  Card,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@ieee/ui/components/card";
 import { Input } from "@ieee/ui/components/input";
 import { Label } from "@ieee/ui/components/label";
 import {
@@ -30,7 +22,8 @@ import {
   NativeSelectOption,
 } from "@ieee/ui/components/native-select";
 import { Textarea } from "@ieee/ui/components/textarea";
-import { formatEventDate, today } from "@/lib/date";
+import { PostCard } from "@/components/post-card";
+import { today } from "@/lib/date";
 import {
   DESCRIPTION_MAX,
   POST_TYPES,
@@ -216,45 +209,42 @@ export function AdminConsole({ posts }: { posts: Post[] }) {
           </p>
         ) : (
           posts.map((post) => (
-            <Card key={post.id}>
-              <CardHeader>
-                <Badge variant="outline">{post.type}</Badge>
-                <CardTitle>{post.title}</CardTitle>
-                <CardDescription>
-                  {formatEventDate(post.event_date)}
-                </CardDescription>
-              </CardHeader>
-              <CardFooter className="grid grid-cols-2 gap-2">
-                <Button variant="outline" onClick={() => edit(post)}>
-                  Edit
-                </Button>
-                <AlertDialog>
-                  <AlertDialogTrigger asChild>
-                    <Button variant="outline" disabled={pending}>
-                      Delete
-                    </Button>
-                  </AlertDialogTrigger>
-                  <AlertDialogContent>
-                    <AlertDialogHeader>
-                      <AlertDialogTitle>Delete this post?</AlertDialogTitle>
-                      <AlertDialogDescription>
-                        &ldquo;{post.title}&rdquo; will be removed from the
-                        feed. This can&apos;t be undone.
-                      </AlertDialogDescription>
-                    </AlertDialogHeader>
-                    <AlertDialogFooter>
-                      <AlertDialogCancel>Cancel</AlertDialogCancel>
-                      <AlertDialogAction
-                        variant="destructive"
-                        onClick={() => remove(post.id)}
-                      >
+            <PostCard
+              key={post.id}
+              post={post}
+              actions={
+                <>
+                  <Button variant="outline" onClick={() => edit(post)}>
+                    Edit
+                  </Button>
+                  <AlertDialog>
+                    <AlertDialogTrigger asChild>
+                      <Button variant="outline" disabled={pending}>
                         Delete
-                      </AlertDialogAction>
-                    </AlertDialogFooter>
-                  </AlertDialogContent>
-                </AlertDialog>
-              </CardFooter>
-            </Card>
+                      </Button>
+                    </AlertDialogTrigger>
+                    <AlertDialogContent>
+                      <AlertDialogHeader>
+                        <AlertDialogTitle>Delete this post?</AlertDialogTitle>
+                        <AlertDialogDescription>
+                          &ldquo;{post.title}&rdquo; will be removed from the
+                          feed. This can&apos;t be undone.
+                        </AlertDialogDescription>
+                      </AlertDialogHeader>
+                      <AlertDialogFooter>
+                        <AlertDialogCancel>Cancel</AlertDialogCancel>
+                        <AlertDialogAction
+                          variant="destructive"
+                          onClick={() => remove(post.id)}
+                        >
+                          Delete
+                        </AlertDialogAction>
+                      </AlertDialogFooter>
+                    </AlertDialogContent>
+                  </AlertDialog>
+                </>
+              }
+            />
           ))
         )}
       </section>

@@ -4,7 +4,7 @@ import { AppHeader } from "@/components/app-header";
 
 export default function NotFound() {
   return (
-    <div className="min-h-dvh">
+    <div className="flex-1">
       <AppHeader />
       <main className="mx-auto flex max-w-md flex-col items-center gap-4 px-4 py-16 text-center">
         <p className="text-sm text-muted-foreground">

@@ -6,38 +6,36 @@ import {
   CardHeader,
   CardTitle,
 } from "@ieee/ui/components/card";
-import { formatEventDate, relativeLabel } from "@/lib/date";
+import { formatEventDate } from "@/lib/date";
 import type { Post } from "@/lib/posts";
 
 export function PostCard({
   post,
-  past = false,
+  actions,
 }: {
   post: Post;
-  past?: boolean;
+  actions?: React.ReactNode;
 }) {
-  const soon = past ? null : relativeLabel(post.event_date);
-
   return (
-    <Card className={past ? "opacity-60" : undefined}>
+    <Card>
       <CardHeader>
-        <div className="flex items-center gap-2">
-          <Badge variant="outline">{post.type}</Badge>
-          {soon && <Badge>{soon}</Badge>}
-        </div>
         <CardTitle>{post.title}</CardTitle>
         <CardDescription className="whitespace-pre-line">
           {post.description}
         </CardDescription>
       </CardHeader>
-      <CardFooter>
+      <CardFooter className="justify-between">
         <time
           dateTime={post.event_date}
           className="text-xs text-muted-foreground"
         >
           {formatEventDate(post.event_date)}
         </time>
+        <Badge variant="outline">{post.type}</Badge>
       </CardFooter>
+      {actions && (
+        <CardFooter className="grid grid-cols-2 gap-2">{actions}</CardFooter>
+      )}
     </Card>
   );
 }

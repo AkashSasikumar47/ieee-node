@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { AppFooter } from "@ieee/ui/layout/app-footer";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -22,7 +23,10 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en">
-      <body className="antialiased">{children}</body>
+      <body className="flex min-h-dvh flex-col antialiased">
+        {children}
+        <AppFooter />
+      </body>
     </html>
   );
 }
