@@ -170,22 +170,24 @@ export function AdminConsole({ posts }: { posts: Post[] }) {
         </div>
 
         <div className="grid grid-cols-2 gap-3">
-          <div className="flex flex-col gap-2">
+          <div className="flex min-w-0 flex-col gap-2">
             <Label htmlFor="event-date">Date</Label>
             <Input
               id="event-date"
               type="date"
               required
+              className="min-w-0 appearance-none [&::-webkit-date-and-time-value]:text-left"
               value={draft.event_date}
               onChange={(event) =>
                 setDraft({ ...draft, event_date: event.target.value })
               }
             />
           </div>
-          <div className="flex flex-col gap-2 *:data-[slot=native-select-wrapper]:w-full">
+          <div className="flex min-w-0 flex-col gap-2 *:data-[slot=native-select-wrapper]:w-full">
             <Label htmlFor="type">Type</Label>
             <NativeSelect
               id="type"
+              className="text-base md:text-sm"
               value={draft.type}
               onChange={(event) =>
                 setDraft({ ...draft, type: event.target.value })
