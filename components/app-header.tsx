@@ -14,7 +14,7 @@ export function AppHeader() {
             priority
           />
         </Link>
-        <Link href="/admin" aria-label="Admin">
+        <Link href="/admin" aria-label="Admin" prefetch={false}>
           <Image
             src="/logos/ieee-srmist-logo.png"
             alt="IEEE SRMIST"

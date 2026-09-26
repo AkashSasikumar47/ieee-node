@@ -96,7 +96,7 @@ export function AdminConsole({ posts }: { posts: Post[] }) {
 
   async function logout() {
     await fetch("/api/auth/logout", { method: "POST" });
-    router.replace("/admin/login");
+    window.location.replace("/admin/login");
   }
 
   function edit(post: Post) {

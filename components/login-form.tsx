@@ -1,25 +1,21 @@
 "use client";
 
-import { useState, useTransition } from "react";
-import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { Alert, AlertDescription } from "@ieee/ui/components/alert";
 import { Button } from "@ieee/ui/components/button";
 import { Input } from "@ieee/ui/components/input";
 import { Label } from "@ieee/ui/components/label";
 
 export function LoginForm() {
-  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [submitting, setSubmitting] = useState(false);
-  const [navigating, startNavigation] = useTransition();
-  const pending = submitting || navigating;
+  const [pending, setPending] = useState(false);
 
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
     setError("");
-    setSubmitting(true);
+    setPending(true);
     try {
       const response = await fetch("/api/auth/login", {
         method: "POST",
@@ -29,13 +25,13 @@ export function LoginForm() {
       if (!response.ok) {
         const data = await response.json().catch(() => ({}));
         setError(data.error ?? "Incorrect email or password");
+        setPending(false);
         return;
       }
-      startNavigation(() => router.replace("/admin"));
+      window.location.replace("/admin");
     } catch {
       setError("Couldn't reach the server. Check your connection.");
-    } finally {
-      setSubmitting(false);
+      setPending(false);
     }
   }
 
