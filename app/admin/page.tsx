@@ -1,17 +1,20 @@
 import { redirect } from "next/navigation";
+import { createClient } from "@ieee/supabase/server";
 import { AdminConsole } from "@/components/admin-console";
 import { AppHeader } from "@/components/app-header";
-import { getAdminClient } from "@/lib/auth";
+import { isAdmin } from "@/lib/auth";
 
 export default async function AdminPage() {
-  const supabase = await getAdminClient();
-  if (!supabase) redirect("/admin/login");
+  const supabase = await createClient();
+  const [admin, { data, error }] = await Promise.all([
+    isAdmin(supabase),
+    supabase
+      .from("ieee_node_posts")
+      .select("*")
+      .order("event_date", { ascending: false }),
+  ]);
 
-  const { data, error } = await supabase
-    .from("ieee_node_posts")
-    .select("*")
-    .order("event_date", { ascending: false });
-
+  if (!admin) redirect("/admin/login");
   if (error) console.error("Failed to load posts for admin:", error.message);
 
   return (
