@@ -113,11 +113,18 @@ export function AdminConsole({ posts }: { posts: Post[] }) {
 
   return (
     <div className="flex flex-col gap-8">
+      <div className="flex items-center justify-between">
+        <h1 className="text-xl font-semibold">Admin</h1>
+        <Button variant="outline" size="sm" onClick={logout}>
+          Sign out
+        </Button>
+      </div>
+
       <form onSubmit={save} className="flex flex-col gap-4">
         <div className="flex items-center justify-between">
-          <h1 className="text-lg font-semibold">
+          <h2 className="text-lg font-semibold">
             {editing ? "Edit post" : "New post"}
-          </h1>
+          </h2>
           {editing && (
             <Button
               type="button"
@@ -249,10 +256,6 @@ export function AdminConsole({ posts }: { posts: Post[] }) {
           ))
         )}
       </section>
-
-      <Button variant="ghost" className="self-start" onClick={logout}>
-        Sign out
-      </Button>
     </div>
   );
 }
