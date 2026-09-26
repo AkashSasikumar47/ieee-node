@@ -153,7 +153,8 @@ export function AdminConsole({ posts }: { posts: Post[] }) {
           <Textarea
             id="description"
             required
-            rows={4}
+            rows={6}
+            className="min-h-36"
             maxLength={DESCRIPTION_MAX}
             value={draft.description}
             onChange={(event) =>
@@ -175,7 +176,7 @@ export function AdminConsole({ posts }: { posts: Post[] }) {
               }
             />
           </div>
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-2 *:data-[slot=native-select-wrapper]:w-full">
             <Label htmlFor="type">Type</Label>
             <NativeSelect
               id="type"
