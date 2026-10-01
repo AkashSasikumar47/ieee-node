@@ -2,7 +2,7 @@ import { createClient } from "@ieee/supabase/server";
 
 type SupabaseClient = Awaited<ReturnType<typeof createClient>>;
 
-export async function isAdmin(supabase: SupabaseClient) {
+export async function getAdmin(supabase: SupabaseClient) {
   const [
     {
       data: { user },
@@ -12,10 +12,10 @@ export async function isAdmin(supabase: SupabaseClient) {
     supabase.auth.getUser(),
     supabase.rpc("ieee_shared_is_admin"),
   ]);
-  return Boolean(user && admin);
+  return user && admin ? user : null;
 }
 
 export async function getAdminClient() {
   const supabase = await createClient();
-  return (await isAdmin(supabase)) ? supabase : null;
+  return (await getAdmin(supabase)) ? supabase : null;
 }

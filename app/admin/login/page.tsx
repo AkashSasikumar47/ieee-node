@@ -1,7 +1,12 @@
 import { AppHeader } from "@/components/app-header";
 import { LoginForm } from "@/components/login-form";
+import { safeReturnTo } from "@/lib/return-to";
 
-export default function LoginPage() {
+export default async function LoginPage({
+  searchParams,
+}: PageProps<"/admin/login">) {
+  const { error, next } = await searchParams;
+
   return (
     <div className="flex-1">
       <AppHeader />
@@ -12,7 +17,10 @@ export default function LoginPage() {
             Admins only. Everyone else can just read the feed.
           </p>
         </div>
-        <LoginForm />
+        <LoginForm
+          error={typeof error === "string" ? error : undefined}
+          next={safeReturnTo(next)}
+        />
       </main>
     </div>
   );
