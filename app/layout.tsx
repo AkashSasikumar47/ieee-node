@@ -1,6 +1,13 @@
 import type { Metadata, Viewport } from "next";
+import { Unbounded } from "next/font/google";
 import { AppFooter } from "@ieee/ui/layout/app-footer";
+import { MotionProvider } from "@/components/motion/motion-provider";
 import "./globals.css";
+
+const unbounded = Unbounded({
+  subsets: ["latin"],
+  variable: "--font-unbounded",
+});
 
 export const metadata: Metadata = {
   title: "NODE | IEEE SRMIST",
@@ -22,10 +29,12 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en">
+    <html lang="en" className={unbounded.variable}>
       <body className="flex min-h-dvh flex-col antialiased">
-        {children}
-        <AppFooter />
+        <MotionProvider>
+          {children}
+          <AppFooter />
+        </MotionProvider>
       </body>
     </html>
   );

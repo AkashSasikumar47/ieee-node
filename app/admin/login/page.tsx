@@ -1,5 +1,6 @@
 import { AppHeader } from "@/components/app-header";
 import { LoginForm } from "@/components/login-form";
+import { FadeUp } from "@/components/motion/fade-up";
 import { safeReturnTo } from "@/lib/return-to";
 
 export default async function LoginPage({
@@ -11,12 +12,12 @@ export default async function LoginPage({
     <div className="flex-1">
       <AppHeader />
       <main className="mx-auto flex max-w-md flex-col gap-6 px-4 py-8">
-        <div className="flex flex-col gap-1">
+        <FadeUp className="flex flex-col gap-1">
           <h1 className="text-lg font-semibold">Sign in</h1>
           <p className="text-sm text-muted-foreground">
             Admins only. Everyone else can just read the feed.
           </p>
-        </div>
+        </FadeUp>
         <LoginForm
           error={typeof error === "string" ? error : undefined}
           next={safeReturnTo(next)}

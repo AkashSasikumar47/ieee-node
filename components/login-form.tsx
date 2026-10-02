@@ -1,10 +1,12 @@
 "use client";
 
 import { useState } from "react";
+import { motion } from "motion/react";
 import { Alert, AlertDescription } from "@ieee/ui/components/alert";
 import { Button } from "@ieee/ui/components/button";
 import { Input } from "@ieee/ui/components/input";
 import { Label } from "@ieee/ui/components/label";
+import { DURATION, EASE_OUT, OFFSET } from "@/components/motion/timing";
 
 const ERRORS: Record<string, string> = {
   credentials: "Incorrect email or password",
@@ -22,11 +24,19 @@ export function LoginForm({
   const message = error ? (ERRORS[error] ?? ERRORS.credentials) : "";
 
   return (
-    <form
+    <motion.form
       method="post"
       action="/api/auth/login"
       onSubmit={() => setPending(true)}
-      className={`flex flex-col gap-4 ${message ? "animate-shake" : ""}`}
+      className="flex flex-col gap-4"
+      initial={{ opacity: 0, y: OFFSET.rise }}
+      animate={{ opacity: 1, y: 0, x: message ? OFFSET.shake : 0 }}
+      transition={{
+        duration: DURATION.enter,
+        ease: EASE_OUT,
+        delay: 0.08,
+        x: { duration: DURATION.shake, delay: DURATION.enter },
+      }}
     >
       {next && <input type="hidden" name="next" value={next} />}
       {message && (
@@ -63,6 +73,6 @@ export function LoginForm({
       <Button type="submit" size="lg" className="h-12" disabled={pending}>
         {pending ? "Signing in…" : "Sign in"}
       </Button>
-    </form>
+    </motion.form>
   );
 }

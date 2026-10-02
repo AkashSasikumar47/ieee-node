@@ -1,11 +1,20 @@
 "use client";
 
+import { useState } from "react";
+import { motion } from "motion/react";
 import {
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
 } from "@ieee/ui/components/tabs";
+import { FadeUp } from "@/components/motion/fade-up";
+import {
+  cardDelay,
+  DURATION,
+  EASE_OUT,
+  OFFSET,
+} from "@/components/motion/timing";
 import { PostCard } from "@/components/post-card";
 import { today } from "@/lib/date";
 import type { Post, PostType } from "@/lib/posts";
@@ -26,12 +35,22 @@ function Section({
 }) {
   return (
     <section className="flex flex-col gap-3">
-      <h2 className="text-xs font-semibold tracking-wider text-muted-foreground uppercase">
-        {title}
-      </h2>
+      <FadeUp>
+        <h2 className="text-xs font-semibold tracking-wider text-muted-foreground uppercase">
+          {title}
+        </h2>
+      </FadeUp>
       {children}
     </section>
   );
+}
+
+function Cards({ posts }: { posts: Post[] }) {
+  return posts.map((post, index) => (
+    <FadeUp key={post.id} trigger="view" delay={cardDelay(index)}>
+      <PostCard post={post} />
+    </FadeUp>
+  ));
 }
 
 function PostList({ posts, label }: { posts: Post[]; label: string }) {
@@ -41,9 +60,12 @@ function PostList({ posts, label }: { posts: Post[]; label: string }) {
 
   if (posts.length === 0) {
     return (
-      <p className="py-16 text-center text-sm text-muted-foreground">
+      <FadeUp
+        as="p"
+        className="py-16 text-center text-sm text-muted-foreground"
+      >
         No {label.toLowerCase()} yet. Check back soon.
-      </p>
+      </FadeUp>
     );
   }
 
@@ -51,18 +73,19 @@ function PostList({ posts, label }: { posts: Post[]; label: string }) {
     <div className="flex flex-col gap-8">
       <Section title="Upcoming">
         {upcoming.length === 0 ? (
-          <p className="rounded-xl border border-dashed px-4 py-8 text-center text-sm text-muted-foreground">
+          <FadeUp
+            as="p"
+            className="rounded-xl border border-dashed px-4 py-8 text-center text-sm text-muted-foreground"
+          >
             Nothing upcoming right now.
-          </p>
+          </FadeUp>
         ) : (
-          upcoming.map((post) => <PostCard key={post.id} post={post} />)
+          <Cards posts={upcoming} />
         )}
       </Section>
       {past.length > 0 && (
         <Section title="Past">
-          {past.map((post) => (
-            <PostCard key={post.id} post={post} />
-          ))}
+          <Cards posts={past} />
         </Section>
       )}
     </div>
@@ -70,23 +93,42 @@ function PostList({ posts, label }: { posts: Post[]; label: string }) {
 }
 
 export function PostFeed({ posts }: { posts: Post[] }) {
+  const [tab, setTab] = useState({ value: "feed", direction: 0 });
+  const indexOf = (value: string) =>
+    TABS.findIndex((item) => item.value === value);
+
+  function change(value: string) {
+    setTab({
+      value,
+      direction: Math.sign(indexOf(value) - indexOf(tab.value)),
+    });
+  }
+
   return (
-    <Tabs defaultValue="feed" className="gap-5">
+    <Tabs value={tab.value} onValueChange={change} className="gap-5">
       <TabsList className="w-full">
-        {TABS.map((tab) => (
-          <TabsTrigger key={tab.value} value={tab.value}>
-            {tab.label}
+        {TABS.map((item) => (
+          <TabsTrigger key={item.value} value={item.value}>
+            {item.label}
           </TabsTrigger>
         ))}
       </TabsList>
-      {TABS.map((tab) => (
-        <TabsContent key={tab.value} value={tab.value}>
-          <PostList
-            label={tab.value === "feed" ? "posts" : tab.label}
-            posts={
-              tab.type ? posts.filter((post) => post.type === tab.type) : posts
-            }
-          />
+      {TABS.map((item) => (
+        <TabsContent key={item.value} value={item.value}>
+          <motion.div
+            initial={{ opacity: 0, x: tab.direction * OFFSET.tab }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: DURATION.tab, ease: EASE_OUT }}
+          >
+            <PostList
+              label={item.value === "feed" ? "posts" : item.label}
+              posts={
+                item.type
+                  ? posts.filter((post) => post.type === item.type)
+                  : posts
+              }
+            />
+          </motion.div>
         </TabsContent>
       ))}
     </Tabs>

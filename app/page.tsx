@@ -1,5 +1,6 @@
 import { createClient } from "@ieee/supabase/server";
 import { AppHeader } from "@/components/app-header";
+import { FadeUp } from "@/components/motion/fade-up";
 import { PostFeed } from "@/components/post-feed";
 
 export default async function FeedPage() {
@@ -18,9 +19,12 @@ export default async function FeedPage() {
         {posts ? (
           <PostFeed posts={posts} />
         ) : (
-          <p className="py-16 text-center text-sm text-muted-foreground">
+          <FadeUp
+            as="p"
+            className="py-16 text-center text-sm text-muted-foreground"
+          >
             Couldn&apos;t load updates. Pull down to try again.
-          </p>
+          </FadeUp>
         )}
       </main>
     </div>
