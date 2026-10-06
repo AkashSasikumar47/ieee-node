@@ -1,6 +1,7 @@
 import { createClient } from "@ieee/supabase/server";
 import { AppHeader } from "@/components/app-header";
 import { FadeUp } from "@/components/motion/fade-up";
+import { IntroProvider } from "@/components/motion/intro";
 import { PostFeed } from "@/components/post-feed";
 
 export default async function FeedPage() {
@@ -13,9 +14,10 @@ export default async function FeedPage() {
   if (error) console.error("Failed to load posts:", error.message);
 
   return (
-    <div className="flex-1">
+    <IntroProvider>
       <AppHeader />
-      <main className="mx-auto max-w-md px-4 pt-4 pb-6">
+      <main className="mx-auto w-full max-w-md flex-1 px-4 pt-4 pb-6">
+        <h1 className="sr-only">IEEE SRMIST updates</h1>
         {posts ? (
           <PostFeed posts={posts} />
         ) : (
@@ -27,6 +29,6 @@ export default async function FeedPage() {
           </FadeUp>
         )}
       </main>
-    </div>
+    </IntroProvider>
   );
 }

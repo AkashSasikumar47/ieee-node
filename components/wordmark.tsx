@@ -5,7 +5,7 @@ import { DURATION, EASE_OUT, WORDMARK } from "@/components/motion/timing";
 
 const LETTERS = ["n", "o", "d", "e"];
 
-function Node() {
+function Node({ pace }: { pace: number }) {
   return (
     <span className="absolute top-[58%] left-1/2 size-[0.13em] -translate-1/2">
       <motion.span
@@ -13,9 +13,9 @@ function Node() {
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         transition={{
-          duration: DURATION.enter,
+          duration: DURATION.enter * pace,
           ease: EASE_OUT,
-          delay: WORDMARK.start + LETTERS.length * WORDMARK.letter,
+          delay: (WORDMARK.start + LETTERS.length * WORDMARK.letter) * pace,
         }}
       />
       <motion.span
@@ -32,19 +32,28 @@ function Node() {
           repeat: Infinity,
           repeatDelay: WORDMARK.rest,
           delay:
-            WORDMARK.start + DURATION.enter + LETTERS.length * WORDMARK.letter,
+            (WORDMARK.start +
+              DURATION.enter +
+              LETTERS.length * WORDMARK.letter) *
+            pace,
         }}
       />
     </span>
   );
 }
 
-export function Wordmark() {
+export function Wordmark({
+  className = "text-[1.6rem]",
+  pace = 1,
+}: {
+  className?: string;
+  pace?: number;
+}) {
   const wave = useAnimationControls();
 
   return (
     <motion.span
-      className="font-display flex text-[1.6rem] leading-none font-bold tracking-[-0.04em] text-primary lowercase"
+      className={`font-display flex leading-none font-bold tracking-[-0.04em] text-primary lowercase ${className}`}
       onHoverStart={() =>
         wave.start((index: number) => ({
           y: [0, "-0.12em", 0],
@@ -63,15 +72,15 @@ export function Wordmark() {
           initial={{ opacity: 0, y: "0.5em", filter: "blur(4px)" }}
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           transition={{
-            duration: DURATION.enter,
+            duration: DURATION.enter * pace,
             ease: EASE_OUT,
-            delay: WORDMARK.start + index * WORDMARK.letter,
+            delay: (WORDMARK.start + index * WORDMARK.letter) * pace,
           }}
         >
           <motion.span className="inline-block" custom={index} animate={wave}>
             {letter}
           </motion.span>
-          {letter === "o" && <Node />}
+          {letter === "o" && <Node pace={pace} />}
         </motion.span>
       ))}
     </motion.span>

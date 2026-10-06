@@ -9,12 +9,9 @@ import {
   TabsTrigger,
 } from "@ieee/ui/components/tabs";
 import { FadeUp } from "@/components/motion/fade-up";
-import {
-  cardDelay,
-  DURATION,
-  EASE_OUT,
-  OFFSET,
-} from "@/components/motion/timing";
+import { useIntroReady } from "@/components/motion/intro";
+import { Reveal } from "@/components/motion/reveal";
+import { DURATION, EASE_OUT, OFFSET } from "@/components/motion/timing";
 import { PostCard } from "@/components/post-card";
 import { today } from "@/lib/date";
 import type { Post, PostType } from "@/lib/posts";
@@ -35,21 +32,21 @@ function Section({
 }) {
   return (
     <section className="flex flex-col gap-3">
-      <FadeUp>
+      <Reveal>
         <h2 className="text-xs font-semibold tracking-wider text-muted-foreground uppercase">
           {title}
         </h2>
-      </FadeUp>
+      </Reveal>
       {children}
     </section>
   );
 }
 
 function Cards({ posts }: { posts: Post[] }) {
-  return posts.map((post, index) => (
-    <FadeUp key={post.id} trigger="view" delay={cardDelay(index)}>
+  return posts.map((post) => (
+    <Reveal key={post.id}>
       <PostCard post={post} />
-    </FadeUp>
+    </Reveal>
   ));
 }
 
@@ -93,6 +90,7 @@ function PostList({ posts, label }: { posts: Post[]; label: string }) {
 }
 
 export function PostFeed({ posts }: { posts: Post[] }) {
+  const ready = useIntroReady();
   const [tab, setTab] = useState({ value: "feed", direction: 0 });
   const indexOf = (value: string) =>
     TABS.findIndex((item) => item.value === value);
@@ -106,18 +104,24 @@ export function PostFeed({ posts }: { posts: Post[] }) {
 
   return (
     <Tabs value={tab.value} onValueChange={change} className="gap-5">
-      <TabsList className="w-full">
-        {TABS.map((item) => (
-          <TabsTrigger key={item.value} value={item.value}>
-            {item.label}
-          </TabsTrigger>
-        ))}
-      </TabsList>
+      <motion.div
+        initial={{ opacity: 0, y: OFFSET.rise }}
+        animate={ready ? { opacity: 1, y: 0 } : undefined}
+        transition={{ duration: DURATION.enter, ease: EASE_OUT }}
+      >
+        <TabsList className="w-full">
+          {TABS.map((item) => (
+            <TabsTrigger key={item.value} value={item.value}>
+              {item.label}
+            </TabsTrigger>
+          ))}
+        </TabsList>
+      </motion.div>
       {TABS.map((item) => (
         <TabsContent key={item.value} value={item.value}>
           <motion.div
             initial={{ opacity: 0, x: tab.direction * OFFSET.tab }}
-            animate={{ opacity: 1, x: 0 }}
+            animate={ready ? { opacity: 1, x: 0 } : undefined}
             transition={{ duration: DURATION.tab, ease: EASE_OUT }}
           >
             <PostList
