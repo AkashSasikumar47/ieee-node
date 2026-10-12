@@ -14,7 +14,7 @@ export default function NotFound() {
         <p className="text-sm text-muted-foreground">
           That page doesn&apos;t exist.
         </p>
-        <Button variant="link" asChild>
+        <Button variant="outline" asChild>
           <Link href="/">Back to the feed</Link>
         </Button>
       </FadeUp>

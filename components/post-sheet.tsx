@@ -6,9 +6,12 @@ import { Button } from "@ieee/ui/components/button";
 import { Input } from "@ieee/ui/components/input";
 import { Label } from "@ieee/ui/components/label";
 import {
-  NativeSelect,
-  NativeSelectOption,
-} from "@ieee/ui/components/native-select";
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@ieee/ui/components/select";
 import {
   Sheet,
   SheetContent,
@@ -150,22 +153,23 @@ function PostForm({
               }
             />
           </div>
-          <div className="flex min-w-0 flex-col gap-2 *:data-[slot=native-select-wrapper]:w-full">
+          <div className="flex min-w-0 flex-col gap-2">
             <Label htmlFor="type">Type</Label>
-            <NativeSelect
-              id="type"
-              className="py-0 text-base md:text-sm"
+            <Select
               value={draft.type}
-              onChange={(event) =>
-                setDraft({ ...draft, type: event.target.value })
-              }
+              onValueChange={(type) => setDraft({ ...draft, type })}
             >
-              {POST_TYPES.map((type) => (
-                <NativeSelectOption key={type} value={type}>
-                  {type}
-                </NativeSelectOption>
-              ))}
-            </NativeSelect>
+              <SelectTrigger id="type" className="w-full text-base md:text-sm">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent position="popper">
+                {POST_TYPES.map((type) => (
+                  <SelectItem key={type} value={type}>
+                    {type}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </div>
         </div>
 
