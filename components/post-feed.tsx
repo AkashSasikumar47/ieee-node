@@ -68,18 +68,11 @@ function PostList({ posts, label }: { posts: Post[]; label: string }) {
 
   return (
     <div className="flex flex-col gap-8">
-      <Section title="Upcoming">
-        {upcoming.length === 0 ? (
-          <FadeUp
-            as="p"
-            className="rounded-xl border border-dashed px-4 py-8 text-center text-sm text-muted-foreground"
-          >
-            Nothing upcoming right now.
-          </FadeUp>
-        ) : (
+      {upcoming.length > 0 && (
+        <Section title="Upcoming">
           <Cards posts={upcoming} />
-        )}
-      </Section>
+        </Section>
+      )}
       {past.length > 0 && (
         <Section title="Past">
           <Cards posts={past} />
