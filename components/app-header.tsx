@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { IeeeLogo } from "@ieee/ui/layout/ieee-logo";
 import Link from "next/link";
 import { motion } from "motion/react";
 import { useIntroPhase, useIntroReady } from "@/components/motion/intro";
@@ -28,13 +28,7 @@ export function AppHeader() {
           transition={{ duration: DURATION.header, ease: EASE_OUT }}
         >
           <Link href="/admin" aria-label="Admin" prefetch={false}>
-            <Image
-              src="/logos/ieee-srmist-logo.png"
-              alt="IEEE SRMIST"
-              width={36}
-              height={36}
-              priority
-            />
+            <IeeeLogo tone="dark" preload />
           </Link>
         </motion.div>
       </div>
